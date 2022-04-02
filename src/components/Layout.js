@@ -11,13 +11,9 @@ export default class Layout extends Component {
         super();
         this.state = {
             nroHistoria: 1,
-            historiaActual: this.buscarHistoria("1"), //cambiar esto
+            historiaActual: this.buscarHistoria("1"),
             seleccionAnterior: ""
         };
-    }
-
-    componentDidMount() {
-        this.setState({ nroHistoria: 1, historiaActual: this.buscarHistoria(this.state.nroHistoria.toString()) })
     }
 
     componentDidUpdate() {
@@ -35,7 +31,7 @@ export default class Layout extends Component {
             const result = window.confirm("¿Querés comenzar de nuevo?");
             if(result) {
                 historial = []
-                this.setState({ nroHistoria: 1, historiaActual: data[0], seleccionAnterior: "" })
+                this.setState({ nroHistoria: 1, historiaActual: this.buscarHistoria("1"), seleccionAnterior: "" })
             }
         } else {
             this.setState({
@@ -44,11 +40,9 @@ export default class Layout extends Component {
                 seleccionAnterior: opcion
 })
         }
-        console.log(this.state)
     }
 
     render() {
-        console.log(historial)
         return (
             <>
                 <Historia descripcion={this.state.historiaActual.historia} />
